@@ -38,9 +38,10 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun CardioLensTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    systemIsDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
+    val darkTheme = ThemeState.isDarkTheme ?: systemIsDark
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
     val view = LocalView.current
 
