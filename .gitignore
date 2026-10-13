@@ -10,6 +10,17 @@
 .DS_Store
 /build
 /captures
-.externalNativeBuild
+    .externalNativeBuild
 .cxx
 local.properties
+
+# =========================
+# ML Pipeline & Python Ignore
+# =========================
+ml-pipeline/venv/
+ml-pipeline/__pycache__/
+.ipynb_checkpoints/
+ml-pipeline/data/
+*.h5
+*.pkl
+
