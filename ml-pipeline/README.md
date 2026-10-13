@@ -1,6 +1,6 @@
 # 🧠 CardioLens ML & Algorithm Pipeline
 
-Welcome to the ML pipeline workspace for CardioLens! This directory is dedicated to offline dataset preprocessing, neural network model experimentation, and TFLite model optimization.
+Welcome to the ML pipeline workspace for CardioLens! This directory is dedicated to offline dataset preprocessing, neural network model experimentation, TFLite model optimization, and Explainable AI (XAI) generation.
 
 ---
 
@@ -9,18 +9,17 @@ Welcome to the ML pipeline workspace for CardioLens! This directory is dedicated
 To ensure optimal on-device performance and minimal frame latency, the pipeline follows a clear separation of concerns:
 
 - **Android Client Scope (`/app`):**
-    - Real-time video capture via CameraX.
-    - Face landmark tracking and Region of Interest (ROI) extraction.
-    - Real-time digital signal processing (DSP) filters (Butterworth bandpass, spatial color averaging).
-    - Native runtime implementation of deterministic rPPG baseline algorithms (CHROM / POS / Peak-to-Peak interval detection).
+  - Real-time video capture via CameraX and ML Kit ROI extraction.
+  - Native runtime implementation of DSP filters (Butterworth bandpass, spatial color averaging).
+  - TFLite Model Execution and mapping outputs to plain-language Explainability UI.
 
 - **ML Workspace Scope (`/ml-pipeline`):**
-    - Dataset ingestion and preprocessing pipelines (e.g., UBFC-rPPG, pure face video crops).
-    - Deep Learning spatio-temporal architecture development (PhysNet, DeepPhys, 3D-CNN / BiLSTM).
-    - Model training, validation, and pulse waveform ground-truth regression.
-    - Exporting, quantizing, and packaging trained weights into a compact `.tflite` model.
+  - Dataset ingestion and preprocessing pipelines (e.g., UBFC-rPPG).
+  - Deep Learning architecture development (1D-CNN, MobileNet).
+  - **SHAP Explainability Analysis:** Running SHAP on the validation set to extract global feature attributions and identify which waveform characteristics drive the HRV/Stress predictions.
+  - Exporting, quantizing, and packaging trained weights into a compact `.tflite` model.
 
-> **Note for Contributors:** You do not need to build deterministic DSP filters (CHROM/POS) or write runtime camera integration code here. Focus exclusively on dataset preparation, neural network training, evaluation metrics, and `.tflite` model export.
+> **Note for Contributors:** You do not need to build deterministic DSP filters or write runtime camera integration code here. Focus exclusively on dataset preparation, neural network training, SHAP feature importance plots, and `.tflite` model export.
 
 ---
 
@@ -29,7 +28,7 @@ To ensure optimal on-device performance and minimal frame latency, the pipeline 
 ```text
 ml-pipeline/
 ├── data/           # Raw & preprocessed datasets (git-ignored)
-├── notebooks/      # Exploratory analysis & training experiments
+├── notebooks/      # Exploratory analysis, training, and SHAP visualizations
 ├── src/            # Modular Python code (preprocessing, network definitions)
-├── models/         # Final exported .tflite models & evaluation artifacts
+├── models/         # Final exported .tflite models
 └── README.md
